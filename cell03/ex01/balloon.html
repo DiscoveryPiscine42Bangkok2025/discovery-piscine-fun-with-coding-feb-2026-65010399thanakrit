@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Explode this balloon</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #balloon {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="balloon"></div>
+
+<script>
+    const balloon = document.getElementById("balloon");
+
+    let size = 200;
+    const minSize = 200;
+    const maxSize = 420;
+
+    const colors = ["red", "green", "blue"];
+    let colorIndex = 0;
+
+    // CLICK → โต + เปลี่ยนสี
+    balloon.addEventListener("click", () => {
+        size += 10;
+
+        if (size > maxSize) {
+            // explode
+            size = minSize;
+            colorIndex = 0;
+        } else {
+            colorIndex = (colorIndex + 1) % colors.length;
+        }
+
+        updateBalloon();
+    });
+
+    // MOUSE LEAVE → หด + สีถอยหลัง
+    balloon.addEventListener("mouseleave", () => {
+        size -= 5;
+        if (size < minSize) size = minSize;
+
+        colorIndex = (colorIndex - 1 + colors.length) % colors.length;
+        updateBalloon();
+    });
+
+    function updateBalloon() {
+        balloon.style.width = size + "px";
+        balloon.style.height = size + "px";
+        balloon.style.backgroundColor = colors[colorIndex];
+    }
+</script>
+
+</body>
+</html>

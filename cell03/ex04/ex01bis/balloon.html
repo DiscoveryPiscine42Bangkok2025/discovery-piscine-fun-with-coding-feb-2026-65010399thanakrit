@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Explode this balloon</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #balloon {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="balloon"></div>
+
+<!-- ต้องมี jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+$(function () {
+    const $balloon = $("#balloon");
+
+    let size = 200;
+    const minSize = 200;
+    const maxSize = 420;
+
+    const colors = ["red", "green", "blue"];
+    let colorIndex = 0;
+
+    function updateBalloon() {
+        $balloon.css({
+            width: size + "px",
+            height: size + "px",
+            backgroundColor: colors[colorIndex]
+        });
+    }
+
+    // CLICK → โต + เปลี่ยนสี
+    $balloon.click(function () {
+        size += 10;
+
+        if (size > maxSize) {
+            size = minSize;
+            colorIndex = 0;
+        } else {
+            colorIndex = (colorIndex + 1) % colors.length;
+        }
+
+        updateBalloon();
+    });
+
+    // MOUSE LEAVE → หด + สีถอยหลัง
+    $balloon.mouseleave(function () {
+        size -= 5;
+        if (size < minSize) size = minSize;
+
+        colorIndex = (colorIndex - 1 + colors.length) % colors.length;
+        updateBalloon();
+    });
+});
+</script>
+
+</body>
+</html>

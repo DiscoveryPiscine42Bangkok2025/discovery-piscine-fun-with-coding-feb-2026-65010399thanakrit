@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To do or not to do</title>
+
+    <!-- jQuery (เพิ่มเข้ามา) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- todo.js (ใช้ jQuery ภายใน) -->
+    <script src="todo.js" defer></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+        #container {
+            width: 300px;
+            margin: 50px auto;
+        }
+        #new {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        #ft_list div {
+            background: white;
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <button id="new">New</button>
+    <div id="ft_list"></div>
+</div>
+
+</body>
+</html>
